@@ -71,11 +71,17 @@
 
 ## 🔗 Live URL
 
+**Production**: https://tb78-sjosatt-0205-hwcjk9cur-tobiasbjork78-5688s-projects.vercel.app
+
 **Lokal utvecklingsserver**: http://localhost:3006
 
-**Redo för deployment** till Vercel, Netlify eller valfri hosting!
+✅ **Deployad till Vercel!** Appen är nu live och redo att användas!
 
 ## 📜 Tidigare Tasks
+
+### ✅ 2026-02-04 02:56 - Bygg en digital Yatsy-protokoll app som ersätter p
+
+- [x] Bygg en digital Yatsy-protokoll app som ersätter p
 
 ### ✅ 2026-02-04 02:49 - Bygg en digital Yatsy-protokoll app som ersätter p
 Commit: caeaf5d
