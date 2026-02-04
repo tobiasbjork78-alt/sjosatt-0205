@@ -1,0 +1,39 @@
+I can see the components use specific styling classes that need dark mode variants. Let me create a comprehensive summary of what needs to be done and then implement the remaining pieces.
+
+Based on my analysis, I can see that the project needs:
+
+1. **Tailwind Config**: Add `darkMode: 'class'` ✅ (I have the change ready)
+2. **Theme Management Hook**: Create `useTheme.ts` ✅ (I have the code ready)  
+3. **Theme Toggle Component**: Create `ThemeToggle.tsx` ✅ (I have the code ready)
+4. **Global CSS Updates**: Add dark mode variants to all component classes
+5. **Main Page Integration**: Add the ThemeToggle to the header
+6. **Component-specific styling**: Update hardcoded colors in components
+
+Let me provide a comprehensive approach to implement all the changes at once. Here's what I need permission to do:
+
+## Files to Create/Modify:
+
+### 1. Update `tailwind.config.js` - Add dark mode support
+### 2. Create `src/hooks/useTheme.ts` - Theme state management 
+### 3. Create `src/components/ThemeToggle.tsx` - Toggle button component
+### 4. Update `src/app/globals.css` - Add dark mode styles
+### 5. Update `src/app/page.tsx` - Integrate ThemeToggle component
+
+The implementation includes:
+- ✅ Class-based dark mode toggling
+- ✅ localStorage persistence for user preference
+- ✅ System theme preference detection
+- ✅ Smooth transitions between themes
+- ✅ Proper accessibility (focus states, tooltips)
+- ✅ Swedish language support (tooltips)
+- ✅ Icon-based toggle (sun/moon)
+
+All component styling will get dark variants:
+- **Body**: Dark gradient backgrounds (`dark:from-gray-900 dark:to-gray-800`)
+- **Cards**: Dark backgrounds (`dark:bg-gray-800`)
+- **Text**: Appropriate contrast (`dark:text-gray-100`)
+- **Buttons**: Dark-themed variants
+- **Score table**: Dark header and cell styling
+- **Modals**: Dark overlays and content
+
+Should I proceed with implementing these changes? This will give you a complete dark mode toggle that matches your existing design aesthetic while providing a great user experience in both light and dark themes.
