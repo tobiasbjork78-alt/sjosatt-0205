@@ -8,16 +8,16 @@
 
 ## 🎯 Uppdrag
 
-Implementera dark mode funktionalitet och lägg till grå prickig bakgrund till sjosatt-0205 projektet.
+Implementera ENDAST dark mode toggle-funktionalitet för sjosatt-0205 projektet.
 
 ---
 
 ## 📋 Steg
 
-1. [ ] Implementera dark mode toggle med next-themes
-2. [ ] Skapa grå prickig bakgrundsmönster med CSS/Tailwind
-3. [ ] Uppdatera färgschema för dark/light mode
-4. [ ] Testa responsivitet och användarupplevelse
+1. [ ] Uppdatera tailwind.config.js: lägg till darkMode: 'class'
+2. [ ] Skapa src/hooks/useTheme.ts hook för tema-state
+3. [ ] Skapa src/components/ThemeToggle.tsx toggle-komponent
+4. [ ] Integrera ThemeToggle i header på page.tsx
 5. [ ] Deploy till Vercel
 
 ---
