@@ -21,6 +21,9 @@ out/
 # Vercel
 .vercel
 
+# Claude build scripts (kan innehålla API keys)
+.claude/run_build.sh
+
 # IDE
 .vscode/
 .idea/
