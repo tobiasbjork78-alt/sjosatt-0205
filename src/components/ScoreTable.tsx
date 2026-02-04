@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import { Player, PlayerScore, ScoreCategory } from '@/types/yatsy';
 import { SCORE_CATEGORIES } from '@/utils/yatsyLogic';
+import QuickPickerModal from './QuickPickerModal';
 
 interface ScoreTableProps {
   players: Player[];
@@ -12,114 +13,6 @@ interface ScoreTableProps {
   isInternationalYatsy?: boolean;
 }
 
-interface ScoreInputModalProps {
-  isOpen: boolean;
-  playerName: string;
-  category: string;
-  currentScore: number | null;
-  onSave: (score: number) => void;
-  onCancel: () => void;
-  isInternationalYatsy?: boolean;
-  isYatsyCategory?: boolean;
-}
-
-function ScoreInputModal({
-  isOpen,
-  playerName,
-  category,
-  currentScore,
-  onSave,
-  onCancel,
-  isInternationalYatsy = false,
-  isYatsyCategory = false
-}: ScoreInputModalProps) {
-  const [score, setScore] = useState(currentScore?.toString() || '');
-
-  React.useEffect(() => {
-    if (isOpen) {
-      setScore(currentScore?.toString() || '');
-    }
-  }, [isOpen, currentScore]);
-
-  if (!isOpen) return null;
-
-  const handleSave = () => {
-    const numScore = parseInt(score) || 0;
-    if (numScore >= 0) {
-      onSave(numScore);
-    }
-  };
-
-  const handleKeyPress = (e: React.KeyboardEvent) => {
-    if (e.key === 'Enter') {
-      handleSave();
-    }
-    if (e.key === 'Escape') {
-      onCancel();
-    }
-  };
-
-  return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4 animate-in fade-in duration-200">
-      <div className="bg-white rounded-2xl p-8 max-w-sm w-full shadow-2xl border border-gray-200 animate-in zoom-in-95 duration-300">
-        <div className="text-center mb-6">
-          <h3 className="text-2xl font-bold text-gray-800 mb-2">
-            {category}
-          </h3>
-          <div className="flex items-center justify-center space-x-2 text-gray-600">
-            <span className="w-8 h-8 bg-blue-500 text-white rounded-full flex items-center justify-center text-sm font-bold">
-              👤
-            </span>
-            <span className="font-semibold">{playerName}</span>
-          </div>
-        </div>
-
-        <div className="relative">
-          <input
-            type="number"
-            min="0"
-            max={isYatsyCategory && isInternationalYatsy ? "80" : "50"}
-            value={score}
-            onChange={(e) => setScore(e.target.value)}
-            onKeyPress={handleKeyPress}
-            placeholder="0"
-            className="w-full px-4 py-4 text-2xl text-center border-2 border-gray-300 rounded-xl focus:outline-none focus:ring-4 focus:ring-blue-200 focus:border-blue-500 transition-all duration-200"
-            autoFocus
-          />
-          <div className="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400 text-sm font-semibold">
-            poäng
-          </div>
-        </div>
-
-        {isYatsyCategory && (
-          <div className="mt-3 p-3 bg-blue-50 rounded-lg border border-blue-200">
-            <p className="text-sm text-blue-700 text-center font-medium">
-              💡 {isInternationalYatsy
-                ? "Internationell variant: Ange totalen (50 + tärningarnas summa)"
-                : "Standard variant: Ange 50 för Yatsy, 0 för missat"
-              }
-            </p>
-          </div>
-        )}
-
-        <div className="flex gap-3 mt-6">
-          <button
-            onClick={onCancel}
-            className="flex-1 px-6 py-3 bg-gray-200 hover:bg-gray-300 text-gray-700 font-semibold rounded-xl transition-all duration-200 hover:shadow-md"
-          >
-            ❌ Avbryt
-          </button>
-          <button
-            onClick={handleSave}
-            className="flex-1 px-6 py-3 bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white font-bold rounded-xl transition-all duration-200 hover:shadow-lg transform hover:scale-105"
-          >
-            ✅ Spara
-          </button>
-        </div>
-      </div>
-    </div>
-  );
-}
 
 export default function ScoreTable({
   players,
@@ -371,15 +264,14 @@ export default function ScoreTable({
         )}
       </div>
 
-      <ScoreInputModal
+      <QuickPickerModal
         isOpen={modalState.isOpen}
         playerName={modalState.playerName}
-        category={modalState.category ? SCORE_CATEGORIES[modalState.category] : ''}
+        category={modalState.category}
         currentScore={getCurrentScore()}
         onSave={handleScoreSave}
         onCancel={closeModal}
         isInternationalYatsy={isInternationalYatsy}
-        isYatsyCategory={modalState.category === 'yatsy'}
       />
     </>
   );

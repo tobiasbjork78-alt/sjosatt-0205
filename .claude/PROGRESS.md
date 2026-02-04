@@ -1,27 +1,26 @@
 # PROGRESS: sjosatt-0205
 
-**Senast uppdaterad:** 2026-02-04 04:45
-**Status:** ✅ SLUTFÖRD
+**Senast uppdaterad:** 2026-02-04 03:46
+**Status:** ⏳ PÅGÅENDE
 
 ---
 
-## 📊 Slutförd Task: Yatzy-förbättringar med modern UI
+## 📊 Aktuell Task: Uppdatera sjosatt-0205: Implementera quick-picker istället för textfält på alla kategorier utom Chans. Tryck på ruta → popup med ENDAST giltiga värden. Övre: Ettorna 0-5, Tvåorna 0,2,4,6,8,10, Treorna 0,3,6,9,12,15, Fyrorna 0,4,8,12,16,20, Femmorna 0,5,10,15,20,25, Sexorna 0,6,12,18,24,30. Nedre: Par 0,2,4,6,8,10,12, Två par 0,6,8,10,12,14,16,18,20,22, Triss 0,3,6,9,12,15,18, Fyrtal 0,4,8,12,16,20,24, Kåk 0 + 7-28, Liten stege 0,15, Stor stege 0,20, Yatsy 0,50. Chans behåller textfält 5-30.
 
-Steg: 6/6
-Progress: 100%
+Steg: 0/5
+Progress: 0%
 
-- [x] 1. Flytta "Ett par" och "Två par" till övre sektionen (från nedre)
-- [x] 2. Byt plats mellan "Chans" och "Yatzy" på spelplanen
-- [x] 3. Implementera val mellan internationell yatzy-variant (50 + tärningarnas summa) och standard yatzy
-- [x] 4. Designa om UI med fokus på förbättrad användarupplevelse och visuell hierarki
-- [x] 5. Uppdatera beräkningslogik för ny sektionsindelning
-- [x] 6. Deploy till Vercel med alla förbättringar
+- [ ] 1. Skapa popup-komponent med dynamiska värden baserat på kategori
+- [ ] 2. Implementera övre sektionens quick-pickers (Ettorna: 0-5, Tvåorna: 0,2,4,6,8,10, etc.)
+- [ ] 3. Implementera nedre sektionens quick-pickers (Par: 0,2,4,6,8,10,12, Två par: 0,6,8,10,12,14,16,18,20,22, etc.)
+- [ ] 4. Behåll textfält för Chans med validering 5-30 och integrera med popup-systemet
+- [ ] 5. Deploy till Vercel med quick-picker funktionalitet
 
 ---
 
 ## 📝 Senaste aktivitet
 
-03:22 - Task startad
+03:46 - Task startad
 
 ---
 

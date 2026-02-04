@@ -1,6 +1,6 @@
-# TASK: Yatzy-spelförbättringar
+# TASK: Quick-picker för Yatzy-kategorier
 
-**Skapad:** 2026-02-04 03:22
+**Skapad:** 2026-02-04 03:46
 **Projekt:** sjosatt-0205
 **Status:** PÅGÅENDE
 
@@ -8,26 +8,26 @@
 
 ## 🎯 Uppdrag
 
-Uppdatera Yatzy-spelet med förbättrad användarupplevelse genom att omorganisera spelplanen, implementera internationell variant och designa om UI:t för bättre UX.
+Implementera quick-picker popup-system för alla Yatzy-kategorier utom Chans. Användaren klickar på en kategori-ruta och får en popup med endast giltiga värden för den kategorin. Chans behåller textfält med validering 5-30.
 
 ---
 
 ## 📋 Steg
 
-1. [ ] Flytta "Ett par" och "Två par" från övre till nedre sektionen i spelplanen
-2. [ ] Byt plats mellan "Chans" och "Yatzy" på spelplanen
-3. [ ] Implementera val mellan internationell yatzy-variant (50 + tärningarnas summa) och standard yatzy
-4. [ ] Designa om UI med fokus på förbättrad användarupplevelse och visuell hierarki
-5. [ ] Deploy till Vercel med alla förbättringar
+1. [ ] Skapa popup-komponent med dynamiska värden baserat på kategori
+2. [ ] Implementera övre sektionens quick-pickers (Ettorna: 0-5, Tvåorna: 0,2,4,6,8,10, etc.)
+3. [ ] Implementera nedre sektionens quick-pickers (Par: 0,2,4,6,8,10,12, Två par: 0,6,8,10,12,14,16,18,20,22, etc.)
+4. [ ] Behåll textfält för Chans med validering 5-30 och integrera med popup-systemet
+5. [ ] Deploy till Vercel med quick-picker funktionalitet
 
 ---
 
 ## ✅ Acceptanskriterier
 
-- [ ] Par och två par visas i nedre sektionen
-- [ ] Chans och yatzy har bytt positioner
-- [ ] Användaren kan välja mellan internationell och standard yatzy-variant
-- [ ] Responsiv design med förbättrad UX
+- [ ] Alla kategorier utom Chans har quick-picker popup
+- [ ] Popup visar endast giltiga värden för respektive kategori
+- [ ] Chans behåller textfält med validering 5-30
+- [ ] Responsiv design med bra UX för popup-interaktion
 - [ ] Fungerar i produktion
 - [ ] Deployad till Vercel
 
@@ -43,11 +43,7 @@ Uppdatera Yatzy-spelet med förbättrad användarupplevelse genom att omorganise
 
 ## 📜 Ändringshistorik
 
-### 2026-02-04 03:33 - Uppdatera Yatzy-spelet med förbättrad användaruppl
-- Projektuppdatering slutförd - Commit: 0dda1d3
-- Status: ✅ KLAR
-
-### 2026-02-04 03:22 - Initial version
+### 2026-02-04 03:46 - Initial version
 - Projekt skapades
 - Task definition slutförd
 - Status: 📝 PLANERAD
