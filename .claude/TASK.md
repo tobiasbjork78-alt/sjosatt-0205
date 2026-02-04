@@ -1,6 +1,6 @@
 # TASK: sjosatt-0205
 
-**Skapad:** 2026-02-04 23:36
+**Skapad:** 2026-02-04 23:48
 **Projekt:** sjosatt-0205
 **Status:** PÅGÅENDE
 
@@ -8,28 +8,27 @@
 
 ## 🎯 Uppdrag
 
-Implementera darkmode funktionalitet med toggle-knapp för att användare ska kunna växla mellan ljust och mörkt tema.
+Implementera en darkmode-knapp som låter användare växla mellan ljust och mörkt läge på webbsidan.
 
 ---
 
 ## 📋 Steg
 
-1. [ ] Skapa ThemeProvider och ThemeContext för att hantera tema-state
-2. [ ] Implementera toggle-komponent med switch/knapp för tema-växling
-3. [ ] Uppdatera Tailwind konfiguration för dark mode stöd
-4. [ ] Applicera dark: klasser på alla komponenter och layouter
+1. [ ] Skapa darkmode toggle-komponent med ikon och växlingsfunktionalitet
+2. [ ] Implementera dark mode styling med Tailwind CSS dark: klasser
+3. [ ] Lägg till localStorage för att komma ihåg användarens val
+4. [ ] Integrera toggle-knappen i header/navigation
 5. [ ] Deploy till Vercel
 
 ---
 
 ## ✅ Acceptanskriterier
 
-- [ ] Toggle-knapp för att växla mellan ljust/mörkt tema
-- [ ] Tema-preferens sparas i localStorage
-- [ ] Alla komponenter fungerar i båda teman
 - [ ] Responsiv design
 - [ ] Fungerar i produktion
 - [ ] Deployad till Vercel
+- [ ] Smooth övergång mellan ljust och mörkt läge
+- [ ] Användarvalet sparas mellan sessioner
 
 ---
 
@@ -43,7 +42,7 @@ Implementera darkmode funktionalitet med toggle-knapp för att användare ska ku
 
 ## 📜 Ändringshistorik
 
-### 2026-02-04 23:36 - Initial version
+### 2026-02-04 23:48 - Initial version
 - Projekt skapades
 - Task definition slutförd
 - Status: 📝 PLANERAD
