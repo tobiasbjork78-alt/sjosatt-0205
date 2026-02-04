@@ -1,6 +1,6 @@
-# TASK: sjosatt-0205
+# TASK: sjosatt-0205 darkmode
 
-**Skapad:** 2026-02-04 22:16
+**Skapad:** 2026-02-04 22:29
 **Projekt:** sjosatt-0205
 **Status:** PÅGÅENDE
 
@@ -8,24 +8,25 @@
 
 ## 🎯 Uppdrag
 
-Implementera en darkmode toggle-funktion som låter användare växla mellan ljust och mörkt tema på webbplatsen.
+Implementera darkmode funktionalitet för sjosatt-0205 projektet med toggle-möjlighet och automatisk systempreferens-detection.
 
 ---
 
 ## 📋 Steg
 
-1. [ ] Skapa darkmode context och provider för global state management
-2. [ ] Implementera toggle-knapp komponent med ikoner för sol/måne
-3. [ ] Uppdatera Tailwind konfiguration för dark mode stöd
-4. [ ] Applicera dark mode klasser på alla komponenter och sidor
+1. [ ] Installera och konfigurera next-themes för darkmode hantering
+2. [ ] Skapa darkmode toggle-komponent med sol/måne-ikon
+3. [ ] Uppdatera Tailwind konfiguration med dark: varianter
+4. [ ] Implementera dark mode styles för alla komponenter
 5. [ ] Deploy till Vercel
 
 ---
 
 ## ✅ Acceptanskriterier
 
-- [ ] Toggle växlar smidigt mellan ljust och mörkt tema
-- [ ] Användarens val sparas i localStorage
+- [ ] Toggle mellan light/dark/system mode
+- [ ] Sparar användarens preferens i localStorage
+- [ ] Automatisk detection av system darkmode
 - [ ] Responsiv design
 - [ ] Fungerar i produktion
 - [ ] Deployad till Vercel
@@ -37,12 +38,13 @@ Implementera en darkmode toggle-funktion som låter användare växla mellan lju
 - Next.js 15.5
 - Tailwind CSS 4
 - TypeScript
+- next-themes
 
 ---
 
 ## 📜 Ändringshistorik
 
-### 2026-02-04 22:16 - Initial version
+### 2026-02-04 22:29 - Initial version
 - Projekt skapades
 - Task definition slutförd
 - Status: 📝 PLANERAD
