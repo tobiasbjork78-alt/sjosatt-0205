@@ -1,35 +1,33 @@
-# TASK: Quick-picker för Yatzy-kategorier
+# TASK: sjosatt-0205
 
-**Skapad:** 2026-02-04 03:46
+**Skapad:** 2026-02-04 12:02
 **Projekt:** sjosatt-0205
-**Status:** PÅGÅENDE
+**Status:** SLUTFÖRD
 
 ---
 
 ## 🎯 Uppdrag
 
-Implementera quick-picker popup-system för alla Yatzy-kategorier utom Chans. Användaren klickar på en kategori-ruta och får en popup med endast giltiga värden för den kategorin. Chans behåller textfält med validering 5-30.
+Flytta "1 par" och "2 par" från övre delen till nedre delen av layouten för att förbättra användarupplevelsen och informationshierarkin.
 
 ---
 
 ## 📋 Steg
 
-1. [ ] Skapa popup-komponent med dynamiska värden baserat på kategori
-2. [ ] Implementera övre sektionens quick-pickers (Ettorna: 0-5, Tvåorna: 0,2,4,6,8,10, etc.)
-3. [ ] Implementera nedre sektionens quick-pickers (Par: 0,2,4,6,8,10,12, Två par: 0,6,8,10,12,14,16,18,20,22, etc.)
-4. [ ] Behåll textfält för Chans med validering 5-30 och integrera med popup-systemet
-5. [ ] Deploy till Vercel med quick-picker funktionalitet
+1. [x] Identifiera nuvarande placering av "1 par" och "2 par" element
+2. [x] Lokalisera målområdet i nedre delen av layouten
+3. [x] Flytta "1 par" och "2 par" till nedre sektionen
+4. [x] Justera styling och spacing för optimal presentation
+5. [x] Deploy till Vercel
 
 ---
 
 ## ✅ Acceptanskriterier
 
-- [ ] Alla kategorier utom Chans har quick-picker popup
-- [ ] Popup visar endast giltiga värden för respektive kategori
-- [ ] Chans behåller textfält med validering 5-30
-- [ ] Responsiv design med bra UX för popup-interaktion
-- [ ] Fungerar i produktion
-- [ ] Deployad till Vercel
+- [x] "1 par" och "2 par" visas i nedre delen av sidan
+- [x] Responsiv design bibehålls
+- [x] Fungerar i produktion
+- [x] Deployad till Vercel
 
 ---
 
@@ -43,11 +41,17 @@ Implementera quick-picker popup-system för alla Yatzy-kategorier utom Chans. An
 
 ## 📜 Ändringshistorik
 
-### 2026-02-04 03:53 - Implementera quick-picker popup-system för alla Ya
-- Projektuppdatering slutförd - Commit: f7e446f
+### 2026-02-04 12:06 - Flytta "1 par" och "2 par" från övre delen till ne
+- Projektuppdatering slutförd
 - Status: ✅ KLAR
 
-### 2026-02-04 03:46 - Initial version
+### 2026-02-04 12:15 - Task slutförd
+- Par och Två par flyttade till nedre sektionen
+- Kalkyleringslogik uppdaterad
+- Deployad till Vercel
+- Status: ✅ SLUTFÖRD
+
+### 2026-02-04 12:02 - Initial version
 - Projekt skapades
 - Task definition slutförd
 - Status: 📝 PLANERAD
