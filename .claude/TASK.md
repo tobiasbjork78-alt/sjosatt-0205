@@ -1,6 +1,6 @@
-# TASK: sjosatt-0205
+# TASK: sjosatt-0205 darkmode
 
-**Skapad:** 2026-02-04 23:58
+**Skapad:** 2026-02-05 00:13
 **Projekt:** sjosatt-0205
 **Status:** PÅGÅENDE
 
@@ -8,28 +8,28 @@
 
 ## 🎯 Uppdrag
 
-Implementera ENDAST dark mode toggle-funktionalitet för sjosatt-0205 projektet.
+Implementera dark mode funktionalitet för sjosatt-0205 projektet med toggle-knapp och persistent användarpreferens.
 
 ---
 
 ## 📋 Steg
 
-1. [ ] Uppdatera tailwind.config.js: lägg till darkMode: 'class'
-2. [ ] Skapa src/hooks/useTheme.ts hook för tema-state
-3. [ ] Skapa src/components/ThemeToggle.tsx toggle-komponent
-4. [ ] Integrera ThemeToggle i header på page.tsx
+1. [ ] Skapa dark mode context och provider med localStorage persistence
+2. [ ] Implementera toggle-knapp komponent med moon/sun ikoner
+3. [ ] Uppdatera Tailwind konfiguration för dark mode stöd
+4. [ ] Applicera dark mode klasser på alla komponenter och sidor
 5. [ ] Deploy till Vercel
 
 ---
 
 ## ✅ Acceptanskriterier
 
-- [ ] Dark mode toggle fungerar smidigt
-- [ ] Grå prickig bakgrund visas korrekt
-- [ ] Färger anpassas automatiskt för båda lägen
 - [ ] Responsiv design
 - [ ] Fungerar i produktion
 - [ ] Deployad till Vercel
+- [ ] Dark/light mode toggle fungerar
+- [ ] Användarpreferens sparas mellan sessioner
+- [ ] Smooth övergångar mellan teman
 
 ---
 
@@ -38,13 +38,12 @@ Implementera ENDAST dark mode toggle-funktionalitet för sjosatt-0205 projektet.
 - Next.js 15.5
 - Tailwind CSS 4
 - TypeScript
-- next-themes
 
 ---
 
 ## 📜 Ändringshistorik
 
-### 2026-02-04 23:58 - Initial version
+### 2026-02-05 00:13 - Initial version
 - Projekt skapades
 - Task definition slutförd
 - Status: 📝 PLANERAD
