@@ -69,11 +69,11 @@ export default function ScoreTable({
   };
 
   const upperCategories: ScoreCategory[] = [
-    'ones', 'twos', 'threes', 'fours', 'fives', 'sixes', 'pair', 'twoPairs'
+    'ones', 'twos', 'threes', 'fours', 'fives', 'sixes'
   ];
 
   const lowerCategories: ScoreCategory[] = [
-    'threeOfAKind', 'fourOfAKind', 'fullHouse',
+    'pair', 'twoPairs', 'threeOfAKind', 'fourOfAKind', 'fullHouse',
     'smallStraight', 'largeStraight', 'yatsy', 'chance'
   ];
 
@@ -107,7 +107,7 @@ export default function ScoreTable({
               {/* Övre sektionen */}
               <tr>
                 <td colSpan={players.length + 1} className="p-3 bg-gradient-to-r from-blue-500 to-blue-600 font-bold text-white text-center text-sm tracking-wide uppercase">
-                  Övre sektionen (1-6 + Par)
+                  Övre sektionen (1-6)
                 </td>
               </tr>
 

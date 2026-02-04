@@ -7,9 +7,7 @@ export function calculateUpperSum(scores: YatsyScores): number {
     scores.threes,
     scores.fours,
     scores.fives,
-    scores.sixes,
-    scores.pair,
-    scores.twoPairs
+    scores.sixes
   ];
 
   return upperScores.reduce((sum: number, score: number | null) => {
@@ -23,6 +21,8 @@ export function calculateUpperBonus(upperSum: number): number {
 
 export function calculateLowerSum(scores: YatsyScores): number {
   const lowerScores: (number | null)[] = [
+    scores.pair,
+    scores.twoPairs,
     scores.threeOfAKind,
     scores.fourOfAKind,
     scores.fullHouse,
