@@ -9,6 +9,7 @@ interface ScoreTableProps {
   playerScores: PlayerScore[];
   onScoreUpdate: (playerId: string, category: ScoreCategory, score: number) => void;
   gameFinished: boolean;
+  isInternationalYatsy?: boolean;
 }
 
 interface ScoreInputModalProps {
@@ -18,6 +19,8 @@ interface ScoreInputModalProps {
   currentScore: number | null;
   onSave: (score: number) => void;
   onCancel: () => void;
+  isInternationalYatsy?: boolean;
+  isYatsyCategory?: boolean;
 }
 
 function ScoreInputModal({
@@ -26,7 +29,9 @@ function ScoreInputModal({
   category,
   currentScore,
   onSave,
-  onCancel
+  onCancel,
+  isInternationalYatsy = false,
+  isYatsyCategory = false
 }: ScoreInputModalProps) {
   const [score, setScore] = useState(currentScore?.toString() || '');
 
@@ -55,39 +60,60 @@ function ScoreInputModal({
   };
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-xl p-6 max-w-sm w-full">
-        <h3 className="text-lg font-bold text-gray-800 mb-2">
-          {category}
-        </h3>
-        <p className="text-gray-600 mb-4">
-          Spelare: {playerName}
-        </p>
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4 animate-in fade-in duration-200">
+      <div className="bg-white rounded-2xl p-8 max-w-sm w-full shadow-2xl border border-gray-200 animate-in zoom-in-95 duration-300">
+        <div className="text-center mb-6">
+          <h3 className="text-2xl font-bold text-gray-800 mb-2">
+            {category}
+          </h3>
+          <div className="flex items-center justify-center space-x-2 text-gray-600">
+            <span className="w-8 h-8 bg-blue-500 text-white rounded-full flex items-center justify-center text-sm font-bold">
+              👤
+            </span>
+            <span className="font-semibold">{playerName}</span>
+          </div>
+        </div>
 
-        <input
-          type="number"
-          min="0"
-          max="50"
-          value={score}
-          onChange={(e) => setScore(e.target.value)}
-          onKeyPress={handleKeyPress}
-          placeholder="Ange poäng"
-          className="w-full px-3 py-3 text-xl text-center border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-yatsy-blue"
-          autoFocus
-        />
+        <div className="relative">
+          <input
+            type="number"
+            min="0"
+            max={isYatsyCategory && isInternationalYatsy ? "80" : "50"}
+            value={score}
+            onChange={(e) => setScore(e.target.value)}
+            onKeyPress={handleKeyPress}
+            placeholder="0"
+            className="w-full px-4 py-4 text-2xl text-center border-2 border-gray-300 rounded-xl focus:outline-none focus:ring-4 focus:ring-blue-200 focus:border-blue-500 transition-all duration-200"
+            autoFocus
+          />
+          <div className="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400 text-sm font-semibold">
+            poäng
+          </div>
+        </div>
 
-        <div className="flex gap-2 mt-4">
+        {isYatsyCategory && (
+          <div className="mt-3 p-3 bg-blue-50 rounded-lg border border-blue-200">
+            <p className="text-sm text-blue-700 text-center font-medium">
+              💡 {isInternationalYatsy
+                ? "Internationell variant: Ange totalen (50 + tärningarnas summa)"
+                : "Standard variant: Ange 50 för Yatsy, 0 för missat"
+              }
+            </p>
+          </div>
+        )}
+
+        <div className="flex gap-3 mt-6">
           <button
             onClick={onCancel}
-            className="flex-1 px-4 py-2 bg-gray-300 hover:bg-gray-400 text-gray-800 rounded-lg transition-colors"
+            className="flex-1 px-6 py-3 bg-gray-200 hover:bg-gray-300 text-gray-700 font-semibold rounded-xl transition-all duration-200 hover:shadow-md"
           >
-            Avbryt
+            ❌ Avbryt
           </button>
           <button
             onClick={handleSave}
-            className="flex-1 yatsy-button"
+            className="flex-1 px-6 py-3 bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white font-bold rounded-xl transition-all duration-200 hover:shadow-lg transform hover:scale-105"
           >
-            Spara
+            ✅ Spara
           </button>
         </div>
       </div>
@@ -99,7 +125,8 @@ export default function ScoreTable({
   players,
   playerScores,
   onScoreUpdate,
-  gameFinished
+  gameFinished,
+  isInternationalYatsy = false
 }: ScoreTableProps) {
   const [modalState, setModalState] = useState<{
     isOpen: boolean;
@@ -149,7 +176,7 @@ export default function ScoreTable({
   };
 
   const upperCategories: ScoreCategory[] = [
-    'ones', 'twos', 'threes', 'fours', 'fives', 'sixes'
+    'ones', 'twos', 'threes', 'fours', 'fives', 'sixes', 'pair', 'twoPairs'
   ];
 
   const lowerCategories: ScoreCategory[] = [
@@ -160,19 +187,23 @@ export default function ScoreTable({
   return (
     <>
       <div className="yatsy-card overflow-x-auto">
-        <h3 className="text-xl font-bold text-gray-800 mb-4 text-center">
+        <h3 className="text-xl font-bold text-gray-800 mb-2 text-center">
           Poängtabell
         </h3>
+        <p className="text-sm text-gray-600 text-center mb-4">
+          {isInternationalYatsy ? 'Internationell variant (Yatsy = 50 + summa)' : 'Standard variant (Yatsy = 50)'}
+        </p>
 
         <div className="min-w-full">
           <table className="w-full border-collapse">
             <thead>
-              <tr>
-                <th className="text-left p-2 border-b-2 border-gray-300 font-semibold">
-                  Kategori
+              <tr className="bg-gradient-to-r from-gray-800 to-gray-900 text-white">
+                <th className="text-left p-4 border-b-2 border-gray-600 font-bold text-lg">
+                  📋 Kategori
                 </th>
-                {players.map(player => (
-                  <th key={player.id} className="text-center p-2 border-b-2 border-gray-300 font-semibold min-w-20">
+                {players.map((player, index) => (
+                  <th key={player.id} className="text-center p-4 border-b-2 border-gray-600 font-bold text-lg min-w-24">
+                    <span className="block text-xs text-gray-300 mb-1">Spelare {index + 1}</span>
                     {player.name}
                   </th>
                 ))}
@@ -182,14 +213,14 @@ export default function ScoreTable({
             <tbody>
               {/* Övre sektionen */}
               <tr>
-                <td colSpan={players.length + 1} className="p-2 bg-blue-50 font-semibold text-blue-800">
-                  Övre sektionen (1-6)
+                <td colSpan={players.length + 1} className="p-3 bg-gradient-to-r from-blue-500 to-blue-600 font-bold text-white text-center text-sm tracking-wide uppercase">
+                  Övre sektionen (1-6 + Par)
                 </td>
               </tr>
 
-              {upperCategories.map(category => (
-                <tr key={category}>
-                  <td className="p-2 border-b border-gray-200 font-medium">
+              {upperCategories.map((category, index) => (
+                <tr key={category} className={index % 2 === 0 ? 'bg-blue-25 hover:bg-blue-50' : 'hover:bg-blue-50'}>
+                  <td className="p-3 border-b border-blue-100 font-medium text-gray-800">
                     {SCORE_CATEGORIES[category]}
                   </td>
                   {players.map(player => {
@@ -198,11 +229,11 @@ export default function ScoreTable({
                     const isFilled = score !== null;
 
                     return (
-                      <td key={player.id} className="p-1 border-b border-gray-200">
+                      <td key={player.id} className="p-2 border-b border-blue-100">
                         <button
                           onClick={() => openModal(player.id, player.name, category)}
                           disabled={gameFinished}
-                          className={`score-cell ${isFilled ? 'filled' : ''}`}
+                          className={`score-cell ${isFilled ? 'filled' : ''} ${gameFinished ? 'cursor-not-allowed opacity-75' : ''}`}
                         >
                           {score ?? ''}
                         </button>
@@ -213,29 +244,31 @@ export default function ScoreTable({
               ))}
 
               {/* Summa och bonus */}
-              <tr className="bg-gray-100">
-                <td className="p-2 border-b border-gray-300 font-semibold">
-                  Summa
+              <tr className="bg-gradient-to-r from-gray-50 to-gray-100 border-t-2 border-blue-200">
+                <td className="p-3 border-b border-gray-300 font-bold text-gray-700">
+                  📊 Summa Övre
                 </td>
                 {players.map(player => {
                   const playerScore = getPlayerScore(player.id);
                   return (
-                    <td key={player.id} className="p-2 border-b border-gray-300 text-center font-semibold">
+                    <td key={player.id} className="p-3 border-b border-gray-300 text-center font-bold text-lg text-blue-700">
                       {playerScore?.upperSum || 0}
                     </td>
                   );
                 })}
               </tr>
 
-              <tr className="bg-yellow-50">
-                <td className="p-2 border-b border-gray-300 font-semibold">
-                  Bonus (63+ = 50p)
+              <tr className="bg-gradient-to-r from-yellow-50 to-yellow-100">
+                <td className="p-3 border-b-2 border-yellow-200 font-bold text-gray-700">
+                  🏆 Bonus (63+ = 50p)
                 </td>
                 {players.map(player => {
                   const playerScore = getPlayerScore(player.id);
+                  const hasBonus = (playerScore?.upperBonus || 0) > 0;
                   return (
-                    <td key={player.id} className="p-2 border-b border-gray-300 text-center font-semibold text-yatsy-yellow">
+                    <td key={player.id} className={`p-3 border-b-2 border-yellow-200 text-center font-bold text-lg ${hasBonus ? 'text-yellow-600' : 'text-gray-400'}`}>
                       {playerScore?.upperBonus || 0}
+                      {hasBonus && ' 🎉'}
                     </td>
                   );
                 })}
@@ -243,14 +276,14 @@ export default function ScoreTable({
 
               {/* Nedre sektionen */}
               <tr>
-                <td colSpan={players.length + 1} className="p-2 bg-green-50 font-semibold text-green-800">
+                <td colSpan={players.length + 1} className="p-3 bg-gradient-to-r from-green-500 to-green-600 font-bold text-white text-center text-sm tracking-wide uppercase">
                   Nedre sektionen
                 </td>
               </tr>
 
-              {lowerCategories.map(category => (
-                <tr key={category}>
-                  <td className="p-2 border-b border-gray-200 font-medium">
+              {lowerCategories.map((category, index) => (
+                <tr key={category} className={index % 2 === 0 ? 'bg-green-25 hover:bg-green-50' : 'hover:bg-green-50'}>
+                  <td className="p-3 border-b border-green-100 font-medium text-gray-800">
                     {SCORE_CATEGORIES[category]}
                   </td>
                   {players.map(player => {
@@ -259,11 +292,11 @@ export default function ScoreTable({
                     const isFilled = score !== null;
 
                     return (
-                      <td key={player.id} className="p-1 border-b border-gray-200">
+                      <td key={player.id} className="p-2 border-b border-green-100">
                         <button
                           onClick={() => openModal(player.id, player.name, category)}
                           disabled={gameFinished}
-                          className={`score-cell ${isFilled ? 'filled' : ''}`}
+                          className={`score-cell ${isFilled ? 'filled' : ''} ${gameFinished ? 'cursor-not-allowed opacity-75' : ''}`}
                         >
                           {score ?? ''}
                         </button>
@@ -274,15 +307,23 @@ export default function ScoreTable({
               ))}
 
               {/* Total */}
-              <tr className="bg-yatsy-blue text-white">
-                <td className="p-3 border-t-2 border-gray-300 font-bold text-lg">
-                  TOTALT
+              <tr className="bg-gradient-to-r from-purple-600 to-purple-700 text-white border-t-4 border-purple-300">
+                <td className="p-4 font-bold text-xl tracking-wide">
+                  🎯 TOTALT
                 </td>
-                {players.map(player => {
+                {players.map((player, index) => {
                   const playerScore = getPlayerScore(player.id);
+                  const totalScore = playerScore?.totalScore || 0;
+                  // Check if this player is in the lead
+                  const allScores = players.map(p => getPlayerScore(p.id)?.totalScore || 0);
+                  const maxScore = Math.max(...allScores);
+                  const isLeading = totalScore === maxScore && totalScore > 0;
+
                   return (
-                    <td key={player.id} className="p-3 border-t-2 border-gray-300 text-center font-bold text-lg">
-                      {playerScore?.totalScore || 0}
+                    <td key={player.id} className="p-4 text-center font-bold text-xl">
+                      {totalScore}
+                      {isLeading && gameFinished && ' 👑'}
+                      {isLeading && !gameFinished && totalScore > 0 && ' 🔥'}
                     </td>
                   );
                 })}
@@ -292,11 +333,12 @@ export default function ScoreTable({
         </div>
 
         {gameFinished && (
-          <div className="mt-6 p-4 bg-green-100 rounded-lg">
-            <h4 className="font-bold text-green-800 text-lg mb-2">
-              🎉 Spelet är slut!
+          <div className="mt-6 p-6 bg-gradient-to-br from-yellow-400 via-yellow-500 to-orange-500 rounded-xl shadow-lg border-2 border-yellow-600">
+            <h4 className="font-bold text-white text-2xl mb-4 text-center">
+              🎉 Spelet är slut! 🎊
             </h4>
-            <div className="space-y-1">
+            <div className="bg-white rounded-lg p-4 space-y-3">
+              <h5 className="font-semibold text-gray-800 text-lg text-center mb-3">🏆 Slutresultat</h5>
               {players
                 .map(player => ({
                   player,
@@ -304,12 +346,23 @@ export default function ScoreTable({
                 }))
                 .sort((a, b) => b.score - a.score)
                 .map((item, index) => (
-                  <div key={item.player.id} className="flex justify-between">
-                    <span className={index === 0 ? 'font-bold text-green-800' : ''}>
-                      {index + 1}. {item.player.name}
+                  <div key={item.player.id} className={`flex justify-between items-center p-3 rounded-lg ${
+                    index === 0
+                      ? 'bg-gradient-to-r from-yellow-100 to-yellow-200 border-2 border-yellow-400'
+                      : 'bg-gray-50 border border-gray-200'
+                  }`}>
+                    <span className={`font-bold text-lg ${
+                      index === 0 ? 'text-yellow-800' : 'text-gray-700'
+                    }`}>
+                      {index === 0 ? '👑' : `${index + 1}.`} {item.player.name}
                     </span>
-                    <span className={index === 0 ? 'font-bold text-green-800' : ''}>
-                      {item.score} poäng {index === 0 && '🏆'}
+                    <span className={`font-bold text-lg ${
+                      index === 0 ? 'text-yellow-800' : 'text-gray-700'
+                    }`}>
+                      {item.score} poäng
+                      {index === 0 && ' 🏆'}
+                      {index === 1 && ' 🥈'}
+                      {index === 2 && ' 🥉'}
                     </span>
                   </div>
                 ))}
@@ -325,6 +378,8 @@ export default function ScoreTable({
         currentScore={getCurrentScore()}
         onSave={handleScoreSave}
         onCancel={closeModal}
+        isInternationalYatsy={isInternationalYatsy}
+        isYatsyCategory={modalState.category === 'yatsy'}
       />
     </>
   );

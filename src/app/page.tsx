@@ -16,6 +16,7 @@ export default function Home() {
   const [games, setGames] = useLocalStorage<GameState[]>('yatsy-games', []);
   const [currentGame, setCurrentGame] = useState<GameState | null>(null);
   const [showHistory, setShowHistory] = useState(false);
+  const [isInternationalYatsy, setIsInternationalYatsy] = useState(false);
 
   // Skapa nytt spel
   const createNewGame = (players: Player[]) => {
@@ -86,7 +87,8 @@ export default function Home() {
         currentPlayerIndex: 0,
         gameStarted: false,
         gameFinished: false,
-        createdAt: new Date()
+        createdAt: new Date(),
+        isInternationalYatsy
       };
       setCurrentGame(tempGame);
     }
@@ -100,7 +102,8 @@ export default function Home() {
         id: Date.now().toString(),
         scores: currentGame.players.map(player => createEmptyPlayerScore(player.id)),
         gameStarted: true,
-        createdAt: new Date()
+        createdAt: new Date(),
+        isInternationalYatsy
       };
 
       setCurrentGame(startedGame);
@@ -111,6 +114,7 @@ export default function Home() {
   const resetGame = () => {
     setCurrentGame(null);
     setShowHistory(false);
+    setIsInternationalYatsy(false);
   };
 
   // Ta bort spel från historik
@@ -179,6 +183,8 @@ export default function Home() {
                 onPlayersChange={updatePlayers}
                 onStartGame={startGame}
                 gameStarted={false}
+                isInternationalYatsy={isInternationalYatsy}
+                onYatsyVariantChange={setIsInternationalYatsy}
               />
             )}
 
@@ -189,6 +195,7 @@ export default function Home() {
                 playerScores={currentGame.scores}
                 onScoreUpdate={updateScore}
                 gameFinished={currentGame.gameFinished}
+                isInternationalYatsy={currentGame.isInternationalYatsy}
               />
             )}
           </div>

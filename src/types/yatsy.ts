@@ -13,13 +13,15 @@ export interface YatsyScores {
   sixes: number | null;       // Sexorna
 
   // Nedre sektionen
+  pair: number | null;            // Par
+  twoPairs: number | null;        // Två par
   threeOfAKind: number | null;    // Triss
   fourOfAKind: number | null;     // Fyrtal
   fullHouse: number | null;       // Kåk
   smallStraight: number | null;   // Liten stege
   largeStraight: number | null;   // Stor stege
-  yatsy: number | null;           // Yatsy
   chance: number | null;          // Chans
+  yatsy: number | null;           // Yatsy (50 + tärningsumma)
 }
 
 export interface PlayerScore extends YatsyScores {
@@ -39,6 +41,7 @@ export interface GameState {
   gameFinished: boolean;
   createdAt: Date;
   finishedAt?: Date;
+  isInternationalYatsy?: boolean; // true = 50 + sum, false = 50 fixed
 }
 
 export interface GameHistory {

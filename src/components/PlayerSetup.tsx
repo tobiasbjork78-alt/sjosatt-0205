@@ -8,13 +8,17 @@ interface PlayerSetupProps {
   onPlayersChange: (players: Player[]) => void;
   onStartGame: () => void;
   gameStarted: boolean;
+  isInternationalYatsy: boolean;
+  onYatsyVariantChange: (isInternational: boolean) => void;
 }
 
 export default function PlayerSetup({
   players,
   onPlayersChange,
   onStartGame,
-  gameStarted
+  gameStarted,
+  isInternationalYatsy,
+  onYatsyVariantChange
 }: PlayerSetupProps) {
   const [newPlayerName, setNewPlayerName] = useState('');
 
@@ -43,13 +47,19 @@ export default function PlayerSetup({
 
   return (
     <div className="yatsy-card">
-      <h2 className="text-2xl font-bold text-gray-800 mb-4 text-center">
-        🎲 Yatsy Digital Protokoll
-      </h2>
+      <div className="text-center mb-6">
+        <h2 className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-2">
+          🎲 Yatsy Digital Protokoll
+        </h2>
+        <p className="text-gray-600 text-sm">
+          Ingen mer papper som fladdrar runt bordet! 📱✨
+        </p>
+      </div>
 
       {!gameStarted && (
         <div className="mb-6">
-          <h3 className="text-lg font-semibold text-gray-700 mb-3">
+          <h3 className="text-lg font-bold text-gray-800 mb-3 flex items-center">
+            <span className="mr-2">👥</span>
             Lägg till spelare
           </h3>
 
@@ -76,7 +86,8 @@ export default function PlayerSetup({
 
       {players.length > 0 && (
         <div className="mb-6">
-          <h3 className="text-lg font-semibold text-gray-700 mb-3">
+          <h3 className="text-lg font-bold text-gray-800 mb-3 flex items-center">
+            <span className="mr-2">📝</span>
             Spelare ({players.length})
           </h3>
 
@@ -84,18 +95,21 @@ export default function PlayerSetup({
             {players.map((player, index) => (
               <div
                 key={player.id}
-                className="flex items-center justify-between p-3 bg-gray-50 rounded-lg"
+                className="flex items-center justify-between p-4 bg-gradient-to-r from-blue-50 to-purple-50 rounded-xl border border-blue-200 shadow-sm"
               >
-                <span className="font-medium text-gray-800">
-                  {index + 1}. {player.name}
+                <span className="font-semibold text-gray-800 flex items-center">
+                  <span className="w-8 h-8 bg-blue-500 text-white rounded-full flex items-center justify-center text-sm font-bold mr-3">
+                    {index + 1}
+                  </span>
+                  {player.name}
                 </span>
 
                 {!gameStarted && (
                   <button
                     onClick={() => removePlayer(player.id)}
-                    className="text-yatsy-red hover:text-red-700 font-semibold"
+                    className="text-yatsy-red hover:text-red-700 font-semibold px-3 py-1 rounded-lg hover:bg-red-50 transition-colors"
                   >
-                    Ta bort
+                    ❌ Ta bort
                   </button>
                 )}
               </div>
@@ -104,14 +118,68 @@ export default function PlayerSetup({
         </div>
       )}
 
+      {!gameStarted && (
+        <div className="mb-6">
+          <h3 className="text-lg font-bold text-gray-800 mb-3 flex items-center">
+            <span className="mr-2">⚙️</span>
+            Välj spelvariant
+          </h3>
+
+          <div className="space-y-3">
+            <label className={`flex items-start space-x-4 cursor-pointer p-4 border-2 rounded-xl transition-all duration-200 ${!isInternationalYatsy
+              ? 'border-blue-500 bg-blue-50 shadow-md'
+              : 'border-gray-300 hover:bg-gray-50 hover:border-gray-400'
+            }`}>
+              <input
+                type="radio"
+                name="yatsyVariant"
+                checked={!isInternationalYatsy}
+                onChange={() => onYatsyVariantChange(false)}
+                className="mt-1 w-5 h-5 text-blue-500"
+              />
+              <div>
+                <div className="font-bold text-gray-800 flex items-center">
+                  🏅 Standard Yatsy
+                  {!isInternationalYatsy && <span className="ml-2 text-blue-600">✓</span>}
+                </div>
+                <div className="text-sm text-gray-600 mt-1">Yatsy = 50 poäng (fast poäng)</div>
+              </div>
+            </label>
+
+            <label className={`flex items-start space-x-4 cursor-pointer p-4 border-2 rounded-xl transition-all duration-200 ${isInternationalYatsy
+              ? 'border-purple-500 bg-purple-50 shadow-md'
+              : 'border-gray-300 hover:bg-gray-50 hover:border-gray-400'
+            }`}>
+              <input
+                type="radio"
+                name="yatsyVariant"
+                checked={isInternationalYatsy}
+                onChange={() => onYatsyVariantChange(true)}
+                className="mt-1 w-5 h-5 text-purple-500"
+              />
+              <div>
+                <div className="font-bold text-gray-800 flex items-center">
+                  🌍 Internationell Yatsy
+                  {isInternationalYatsy && <span className="ml-2 text-purple-600">✓</span>}
+                </div>
+                <div className="text-sm text-gray-600 mt-1">Yatsy = 50 + summan av alla tärningar</div>
+              </div>
+            </label>
+          </div>
+        </div>
+      )}
+
       {!gameStarted && players.length >= 2 && (
         <div className="text-center">
           <button
             onClick={onStartGame}
-            className="yatsy-button text-lg py-3 px-8"
+            className="bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white font-bold text-xl py-4 px-12 rounded-xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200"
           >
-            Starta Spel 🎲
+            🚀 Starta Spel 🎲
           </button>
+          <p className="text-sm text-gray-500 mt-2">
+            Allt redo! Tryck för att börja spela.
+          </p>
         </div>
       )}
 

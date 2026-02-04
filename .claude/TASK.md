@@ -1,6 +1,6 @@
-# TASK: yatsy-digital
+# TASK: Yatzy-spelförbättringar
 
-**Skapad:** 2026-02-04 02:05
+**Skapad:** 2026-02-04 03:22
 **Projekt:** sjosatt-0205
 **Status:** PÅGÅENDE
 
@@ -8,29 +8,26 @@
 
 ## 🎯 Uppdrag
 
-Bygg en digital Yatsy-protokoll app som ersätter papper och penna. Enkel MVP med spelarlista, komplett poängtabell (15 kategorier), auto-summering, klickbar poängifyllning och spelhistorik. Mobilanpassad för användning runt spelbordet.
+Uppdatera Yatzy-spelet med förbättrad användarupplevelse genom att omorganisera spelplanen, implementera internationell variant och designa om UI:t för bättre UX.
 
 ---
 
 ## 📋 Steg
 
-1. [ ] Skapa Next.js projekt med TypeScript och Tailwind, sätt upp grundläggande projektstruktur
-2. [ ] Implementera spelarlista med dynamisk lägg till/ta bort funktionalitet
-3. [ ] Bygga komplett Yatsy-poängtabell med alla 15 kategorier och klickbar poängifyllning
-4. [ ] Implementera auto-räkning av summa, bonus och totalt samt localStorage för spelhistorik
-5. [ ] Finslipa responsiv design och deploy till Vercel
+1. [ ] Flytta "Ett par" och "Två par" från övre till nedre sektionen i spelplanen
+2. [ ] Byt plats mellan "Chans" och "Yatzy" på spelplanen
+3. [ ] Implementera val mellan internationell yatzy-variant (50 + tärningarnas summa) och standard yatzy
+4. [ ] Designa om UI med fokus på förbättrad användarupplevelse och visuell hierarki
+5. [ ] Deploy till Vercel med alla förbättringar
 
 ---
 
 ## ✅ Acceptanskriterier
 
-- [ ] Dynamisk spelarlista (lägg till/ta bort spelare)
-- [ ] Komplett Yatsy-tabell med alla 15 kategorier
-- [ ] Auto-summering av poäng, bonus och totalt
-- [ ] Klickbar poängifyllning per kategori
-- [ ] Spelhistorik sparas lokalt
-- [ ] Mobilanpassad design för spelbordet
-- [ ] Responsiv design
+- [ ] Par och två par visas i nedre sektionen
+- [ ] Chans och yatzy har bytt positioner
+- [ ] Användaren kan välja mellan internationell och standard yatzy-variant
+- [ ] Responsiv design med förbättrad UX
 - [ ] Fungerar i produktion
 - [ ] Deployad till Vercel
 
@@ -41,29 +38,12 @@ Bygg en digital Yatsy-protokoll app som ersätter papper och penna. Enkel MVP me
 - Next.js 15.5
 - Tailwind CSS 4
 - TypeScript
-- localStorage för datalagring
 
 ---
 
 ## 📜 Ändringshistorik
 
-### 2026-02-04 02:57 - Bygg en digital Yatsy-protokoll app som ersätter p
-- Projektuppdatering slutförd - Commit: db2145b
-- Status: ✅ KLAR
-
-### 2026-02-04 02:56 - Bygg en digital Yatsy-protokoll app som ersätter p
-- Projektuppdatering slutförd
-- Status: ✅ KLAR
-
-### 2026-02-04 02:49 - Bygg en digital Yatsy-protokoll app som ersätter p
-- Projektuppdatering slutförd - Commit: caeaf5d
-- Status: ✅ KLAR
-
-### 2026-02-04 02:37 - Bygg en digital Yatsy-protokoll app som ersätter p
-- Projektuppdatering slutförd
-- Status: ✅ KLAR
-
-### 2026-02-04 02:05 - Initial version
+### 2026-02-04 03:22 - Initial version
 - Projekt skapades
 - Task definition slutförd
 - Status: 📝 PLANERAD

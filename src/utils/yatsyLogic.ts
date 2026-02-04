@@ -7,7 +7,9 @@ export function calculateUpperSum(scores: YatsyScores): number {
     scores.threes,
     scores.fours,
     scores.fives,
-    scores.sixes
+    scores.sixes,
+    scores.pair,
+    scores.twoPairs
   ];
 
   return upperScores.reduce((sum: number, score: number | null) => {
@@ -63,13 +65,15 @@ export function createEmptyPlayerScore(playerId: string): PlayerScore {
     fours: null,
     fives: null,
     sixes: null,
+    pair: null,
+    twoPairs: null,
     threeOfAKind: null,
     fourOfAKind: null,
     fullHouse: null,
     smallStraight: null,
     largeStraight: null,
-    yatsy: null,
     chance: null,
+    yatsy: null,
     upperSum: 0,
     upperBonus: 0,
     lowerSum: 0,
@@ -86,6 +90,8 @@ export function isGameFinished(playerScores: PlayerScore[]): boolean {
       playerScore.fours,
       playerScore.fives,
       playerScore.sixes,
+      playerScore.pair,
+      playerScore.twoPairs,
       playerScore.threeOfAKind,
       playerScore.fourOfAKind,
       playerScore.fullHouse,
@@ -100,17 +106,19 @@ export function isGameFinished(playerScores: PlayerScore[]): boolean {
 }
 
 export const SCORE_CATEGORIES = {
-  ones: 'Ettorna',
-  twos: 'Tvåorna',
-  threes: 'Treorna',
-  fours: 'Fyrorna',
-  fives: 'Femmorna',
-  sixes: 'Sexorna',
-  threeOfAKind: 'Triss',
-  fourOfAKind: 'Fyrtal',
-  fullHouse: 'Kåk',
-  smallStraight: 'Liten stege',
-  largeStraight: 'Stor stege',
-  yatsy: 'Yatsy',
-  chance: 'Chans'
+  ones: '1️⃣ Ettorna',
+  twos: '2️⃣ Tvåorna',
+  threes: '3️⃣ Treorna',
+  fours: '4️⃣ Fyrorna',
+  fives: '5️⃣ Femmorna',
+  sixes: '6️⃣ Sexorna',
+  pair: '👥 Par',
+  twoPairs: '👥👥 Två par',
+  threeOfAKind: '🎯 Triss',
+  fourOfAKind: '🎯🎯 Fyrtal',
+  fullHouse: '🏠 Kåk',
+  smallStraight: '📈 Liten stege',
+  largeStraight: '📊 Stor stege',
+  yatsy: '🎲 Yatsy',
+  chance: '🍀 Chans'
 } as const;
