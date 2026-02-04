@@ -37,6 +37,11 @@ Progress: 100%
 
 ## 📜 Tidigare Tasks
 
+### ✅ 2026-02-04 03:33 - Uppdatera Yatzy-spelet med förbättrad användaruppl
+Commit: 0dda1d3
+
+- [x] Uppdatera Yatzy-spelet med förbättrad användaruppl
+
 ### ✅ 2026-02-04 02:57 - Bygg en digital Yatsy-protokoll app som ersätter p
 Commit: db2145b
 
