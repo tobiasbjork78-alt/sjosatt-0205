@@ -11,6 +11,9 @@ import { useLocalStorage } from '@/hooks/useLocalStorage';
 import PlayerSetup from '@/components/PlayerSetup';
 import ScoreTable from '@/components/ScoreTable';
 import GameHistory from '@/components/GameHistory';
+import { ThemeToggle } from '@/components/ThemeToggle';
+import { ClientWrapper } from '@/components/ClientWrapper';
+import { ThemeProvider } from '@/providers/ThemeProvider';
 
 export default function Home() {
   const [games, setGames] = useLocalStorage<GameState[]>('yatsy-games', []);
@@ -133,8 +136,12 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen py-4 px-2">
-      <div className="max-w-6xl mx-auto">
+    <ThemeProvider>
+      <div className="min-h-screen py-4 px-2">
+        <ClientWrapper>
+          <ThemeToggle />
+        </ClientWrapper>
+        <div className="max-w-6xl mx-auto">
 
         {/* Header med navigation */}
         <div className="mb-6 flex flex-wrap gap-2 justify-center">
@@ -206,7 +213,8 @@ export default function Home() {
           <p>🎲 Yatsy Digital Protokoll</p>
           <p>Inga fler papper som fladdrar runt bordet!</p>
         </div>
+        </div>
       </div>
-    </div>
+    </ThemeProvider>
   );
 }
