@@ -63,20 +63,20 @@ export default function PlayerSetup({
             Lägg till spelare
           </h3>
 
-          <div className="flex gap-2 mb-4">
+          <div className="flex gap-3 mb-4">
             <input
               type="text"
               value={newPlayerName}
               onChange={(e) => setNewPlayerName(e.target.value)}
               onKeyPress={handleKeyPress}
               placeholder="Spelarens namn"
-              className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-yatsy-blue"
+              className="flex-1 px-4 py-3 min-h-[48px] border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-yatsy-blue touch-manipulation text-lg"
               maxLength={20}
             />
             <button
               onClick={addPlayer}
               disabled={!newPlayerName.trim() || players.length >= 8}
-              className="yatsy-button disabled:opacity-50 disabled:cursor-not-allowed"
+              className="yatsy-button disabled:opacity-50 disabled:cursor-not-allowed whitespace-nowrap"
             >
               Lägg till
             </button>
@@ -107,7 +107,7 @@ export default function PlayerSetup({
                 {!gameStarted && (
                   <button
                     onClick={() => removePlayer(player.id)}
-                    className="text-yatsy-red hover:text-red-700 font-semibold px-3 py-1 rounded-lg hover:bg-red-50 transition-colors"
+                    className="text-yatsy-red hover:text-red-700 font-semibold px-4 py-2 min-h-[44px] rounded-lg hover:bg-red-50 transition-colors touch-manipulation"
                   >
                     ❌ Ta bort
                   </button>
@@ -135,7 +135,7 @@ export default function PlayerSetup({
                 name="yatsyVariant"
                 checked={!isInternationalYatsy}
                 onChange={() => onYatsyVariantChange(false)}
-                className="mt-1 w-5 h-5 text-blue-500"
+                className="mt-1 w-6 h-6 text-blue-500 touch-manipulation"
               />
               <div>
                 <div className="font-bold text-gray-800 flex items-center">
@@ -155,7 +155,7 @@ export default function PlayerSetup({
                 name="yatsyVariant"
                 checked={isInternationalYatsy}
                 onChange={() => onYatsyVariantChange(true)}
-                className="mt-1 w-5 h-5 text-purple-500"
+                className="mt-1 w-6 h-6 text-purple-500 touch-manipulation"
               />
               <div>
                 <div className="font-bold text-gray-800 flex items-center">
@@ -173,7 +173,7 @@ export default function PlayerSetup({
         <div className="text-center">
           <button
             onClick={onStartGame}
-            className="bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white font-bold text-xl py-4 px-12 rounded-xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200"
+            className="bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white font-bold text-xl py-5 px-12 min-h-[60px] rounded-xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200 touch-manipulation"
           >
             🚀 Starta Spel 🎲
           </button>

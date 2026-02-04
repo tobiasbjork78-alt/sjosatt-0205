@@ -1,15 +1,29 @@
 {
   "name": "Yatsy Digital Protokoll",
   "short_name": "Yatsy",
-  "description": "Digital poängräkning för Yatsy - ersätt papper och penna!",
+  "description": "Digital poängräkning för Yatsy - ersätt papper och penna! Spela med vänner och familj.",
   "start_url": "/",
+  "id": "/",
+  "scope": "/",
   "display": "standalone",
   "background_color": "#f8fafc",
   "theme_color": "#3b82f6",
-  "orientation": "portrait-primary",
-  "categories": ["games", "entertainment"],
+  "orientation": "any",
+  "categories": ["games", "entertainment", "productivity"],
   "lang": "sv-SE",
+  "prefer_related_applications": false,
   "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "32x32",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png",
+      "purpose": "any"
+    },
     {
       "src": "/icon-192x192.png",
       "sizes": "192x192",
@@ -21,20 +35,15 @@
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any maskable"
-    },
-    {
-      "src": "/apple-touch-icon.png",
-      "sizes": "180x180",
-      "type": "image/png",
-      "purpose": "any"
     }
   ],
-  "screenshots": [
+  "shortcuts": [
     {
-      "src": "/screenshot-mobile.png",
-      "sizes": "390x844",
-      "type": "image/png",
-      "form_factor": "narrow"
+      "name": "Nytt spel",
+      "short_name": "Nytt",
+      "description": "Starta ett nytt Yatsy-spel",
+      "url": "/",
+      "icons": [{ "src": "/icon-192x192.png", "sizes": "192x192" }]
     }
   ]
 }

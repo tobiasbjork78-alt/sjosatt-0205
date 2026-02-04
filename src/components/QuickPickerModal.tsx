@@ -76,8 +76,8 @@ export default function QuickPickerModal({
     };
 
     return (
-      <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4 animate-in fade-in duration-200">
-        <div className="bg-white rounded-2xl p-8 max-w-sm w-full shadow-2xl border border-gray-200 animate-in zoom-in-95 duration-300">
+      <div className="fixed inset-0 bg-black bg-opacity-50 flex items-end sm:items-center justify-center z-50 p-4 animate-in fade-in duration-200">
+        <div className="bg-white rounded-t-2xl sm:rounded-2xl p-6 sm:p-8 max-w-sm w-full shadow-2xl border border-gray-200 animate-in slide-in-from-bottom sm:zoom-in-95 duration-300 max-h-[90vh] sm:max-h-[80vh] overflow-hidden">
           <div className="text-center mb-6">
             <h3 className="text-2xl font-bold text-gray-800 mb-2">
               {SCORE_CATEGORIES[category]}
@@ -99,7 +99,7 @@ export default function QuickPickerModal({
               onChange={(e) => setInputValue(e.target.value)}
               onKeyPress={handleKeyPress}
               placeholder="5-30"
-              className="w-full px-4 py-4 text-2xl text-center border-2 border-gray-300 rounded-xl focus:outline-none focus:ring-4 focus:ring-blue-200 focus:border-blue-500 transition-all duration-200"
+              className="w-full px-4 py-5 min-h-[56px] text-2xl text-center border-2 border-gray-300 rounded-xl focus:outline-none focus:ring-4 focus:ring-blue-200 focus:border-blue-500 transition-all duration-200 touch-manipulation"
               autoFocus
             />
             <div className="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400 text-sm font-semibold">
@@ -113,17 +113,17 @@ export default function QuickPickerModal({
             </p>
           </div>
 
-          <div className="flex gap-3 mt-6">
+          <div className="flex gap-4 mt-6">
             <button
               onClick={onCancel}
-              className="flex-1 px-6 py-3 bg-gray-200 hover:bg-gray-300 text-gray-700 font-semibold rounded-xl transition-all duration-200 hover:shadow-md"
+              className="flex-1 px-6 py-4 min-h-[48px] bg-gray-200 hover:bg-gray-300 text-gray-700 font-semibold rounded-xl transition-all duration-200 hover:shadow-md touch-manipulation"
             >
               ❌ Avbryt
             </button>
             <button
               onClick={handleSave}
               disabled={!inputValue || parseInt(inputValue) < 5 || parseInt(inputValue) > 30}
-              className="flex-1 px-6 py-3 bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white font-bold rounded-xl transition-all duration-200 hover:shadow-lg transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
+              className="flex-1 px-6 py-4 min-h-[48px] bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white font-bold rounded-xl transition-all duration-200 hover:shadow-lg transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none touch-manipulation"
             >
               ✅ Spara
             </button>
@@ -144,8 +144,8 @@ export default function QuickPickerModal({
   const finalValues = category === 'yatsy' && isInternationalYatsy ? yatsyValues : validValues;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4 animate-in fade-in duration-200">
-      <div className="bg-white rounded-2xl p-8 max-w-md w-full shadow-2xl border border-gray-200 animate-in zoom-in-95 duration-300">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-end sm:items-center justify-center z-50 p-4 animate-in fade-in duration-200">
+      <div className="bg-white rounded-t-2xl sm:rounded-2xl p-6 sm:p-8 max-w-md w-full shadow-2xl border border-gray-200 animate-in slide-in-from-bottom sm:zoom-in-95 duration-300 max-h-[90vh] sm:max-h-[80vh] overflow-hidden flex flex-col">
         <div className="text-center mb-6">
           <h3 className="text-2xl font-bold text-gray-800 mb-2">
             {SCORE_CATEGORIES[category]}
@@ -165,20 +165,22 @@ export default function QuickPickerModal({
         </div>
 
         {/* Quick-picker grid */}
-        <div className="grid grid-cols-3 gap-3 mb-6 max-h-64 overflow-y-auto">
-          {finalValues.map((value) => (
-            <button
-              key={value}
-              onClick={() => onSave(value)}
-              className={`h-12 rounded-xl font-bold text-lg transition-all duration-200 border-2 hover:scale-105 hover:shadow-md ${
-                currentScore === value
-                  ? 'bg-blue-500 text-white border-blue-600 shadow-lg'
-                  : 'bg-gray-50 hover:bg-blue-100 text-gray-700 border-gray-200 hover:border-blue-300'
-              }`}
-            >
-              {value}
-            </button>
-          ))}
+        <div className="flex-1 overflow-hidden">
+          <div className="grid grid-cols-3 gap-3 sm:gap-4 max-h-64 sm:max-h-72 overflow-y-auto p-2 sm:p-1">
+            {finalValues.map((value) => (
+              <button
+                key={value}
+                onClick={() => onSave(value)}
+                className={`min-h-[52px] h-14 sm:h-16 rounded-xl font-bold text-xl transition-all duration-200 border-2 hover:scale-105 hover:shadow-md touch-manipulation active:scale-95 ${
+                  currentScore === value
+                    ? 'bg-blue-500 text-white border-blue-600 shadow-lg'
+                    : 'bg-gray-50 hover:bg-blue-100 text-gray-700 border-gray-200 hover:border-blue-300'
+                }`}
+              >
+                {value}
+              </button>
+            ))}
+          </div>
         </div>
 
         {category === 'yatsy' && (
@@ -192,10 +194,10 @@ export default function QuickPickerModal({
           </div>
         )}
 
-        <div className="flex gap-3">
+        <div className="mt-4 pt-4 border-t border-gray-200">
           <button
             onClick={onCancel}
-            className="flex-1 px-6 py-3 bg-gray-200 hover:bg-gray-300 text-gray-700 font-semibold rounded-xl transition-all duration-200 hover:shadow-md"
+            className="w-full px-6 py-4 min-h-[52px] bg-gray-200 hover:bg-gray-300 text-gray-700 font-semibold rounded-xl transition-all duration-200 hover:shadow-md touch-manipulation active:scale-95"
           >
             ❌ Avbryt
           </button>

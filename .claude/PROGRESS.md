@@ -1,41 +1,37 @@
 # PROGRESS: sjosatt-0205
 
-**Senast uppdaterad:** 2026-02-04 12:06:45
-**Status:** ✅ SLUTFÖRD
+**Senast uppdaterad:** 2026-02-04 13:36:18
+**Status:** ❌ FEL
 
 ---
 
-## 📊 Aktuell Task: Flytta "1 par" och "2 par" från övre delen till nedre delen av layouten för att förbättra användarup
+## 📊 Aktuell Task: Uppdatera sjosatt-0205 med PWA-stöd för hemskärmsinstallation och optimera hela appen för mobil UX/U
 
-Steg: 5/5
+Steg: 7/7
 Progress: 100%
 
-- [x] 1. Identifiera nuvarande placering av "1 par" och "2 par" element
-- [x] 2. Lokalisera målområdet i nedre delen av layouten
-- [x] 3. Flytta "1 par" och "2 par" till nedre sektionen
-- [x] 4. Justera styling och spacing för optimal presentation
-- [x] 5. Deploy till Vercel
+- [❌] 1. Skapa manifest.json med app-metadata, ikoner och standalone display mode
+- [❌] 2. Generera och lägg till app-ikoner i olika storlekar (192x192, 512x512, Apple touch icons)
+- [❌] 3. Konfigurera PWA-inställningar i Next.js och lägg till meta-taggar för iOS
+- [❌] 4. Optimera mobil UX - förstora knappar, förbättra input-fält storlek och touch targets
+- [❌] 5. Förbättra quick-picker för thumb-navigation och responsiv layout för iPhone
+- [❌] 6. Testa PWA-installation och mobil UX på iPhone
+- [❌] 7. Deploy till Vercel
 
 ---
 
 ## 📝 Senaste aktivitet
 
-12:06 - Task slutförd
+13:36 - Task misslyckad
 
 ---
 
 ## 🚨 Fel (om några)
 
-*Inga fel*
+*Task misslyckades - se output*
 
 ---
 
 ## 🔗 Live URL
 
-*Deployad*
-
-## 📜 Tidigare Tasks
-
-### ✅ 2026-02-04 12:06 - Flytta "1 par" och "2 par" från övre delen till ne
-
-- [x] Flytta "1 par" och "2 par" från övre delen till ne
+*Ej deployad*

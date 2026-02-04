@@ -18,15 +18,15 @@
   }
 
   .yatsy-button {
-    @apply bg-yatsy-blue hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-200;
+    @apply bg-yatsy-blue hover:bg-blue-600 text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-200 min-h-[44px] touch-manipulation;
   }
 
   .yatsy-button-danger {
-    @apply bg-yatsy-red hover:bg-red-600 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-200;
+    @apply bg-yatsy-red hover:bg-red-600 text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-200 min-h-[44px] touch-manipulation;
   }
 
   .score-cell {
-    @apply w-20 h-14 border-2 border-gray-300 rounded-lg text-center cursor-pointer hover:bg-blue-50 transition-all duration-200 flex items-center justify-center text-lg font-bold shadow-sm;
+    @apply w-24 h-16 border-2 border-gray-300 rounded-lg text-center cursor-pointer hover:bg-blue-50 transition-all duration-200 flex items-center justify-center text-lg font-bold shadow-sm touch-manipulation;
   }
 
   .score-cell.filled {
