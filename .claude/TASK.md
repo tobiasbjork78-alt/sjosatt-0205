@@ -43,6 +43,10 @@ Implementera quick-picker popup-system för alla Yatzy-kategorier utom Chans. An
 
 ## 📜 Ändringshistorik
 
+### 2026-02-04 03:53 - Implementera quick-picker popup-system för alla Ya
+- Projektuppdatering slutförd - Commit: f7e446f
+- Status: ✅ KLAR
+
 ### 2026-02-04 03:46 - Initial version
 - Projekt skapades
 - Task definition slutförd

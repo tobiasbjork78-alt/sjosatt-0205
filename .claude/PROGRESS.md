@@ -46,6 +46,11 @@ Progress: 100%
 
 ## 📜 Tidigare Tasks
 
+### ✅ 2026-02-04 03:53 - Implementera quick-picker popup-system för alla Ya
+Commit: f7e446f
+
+- [x] Implementera quick-picker popup-system för alla Ya
+
 ### ✅ 2026-02-04 03:33 - Uppdatera Yatzy-spelet med förbättrad användaruppl
 Commit: 0dda1d3
 
