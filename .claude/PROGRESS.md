@@ -1,23 +1,21 @@
 # PROGRESS: sjosatt-0205
 
-**Senast uppdaterad:** 2026-02-04 03:22
-**Status:** ⏳ PÅGÅENDE
+**Senast uppdaterad:** 2026-02-04 04:45
+**Status:** ✅ SLUTFÖRD
 
 ---
 
-## 📊 Aktuell Task: Uppdatera sjosatt-0205: 1. Flytta par och två par från övre till nedre sektionen
-2. Byt plats på chans och yatzy
-3. Implementera valet av  internationell yatzy-variant (50 + vad tärningar visar) eller standard kvar
-4. Designa om UI med fokus på hög UX
+## 📊 Slutförd Task: Yatzy-förbättringar med modern UI
 
-Steg: 0/5
-Progress: 0%
+Steg: 6/6
+Progress: 100%
 
-- [ ] 1. Flytta "Ett par" och "Två par" från övre till nedre sektionen i spelplanen
-- [ ] 2. Byt plats mellan "Chans" och "Yatzy" på spelplanen
-- [ ] 3. Implementera val mellan internationell yatzy-variant (50 + tärningarnas summa) och standard yatzy
-- [ ] 4. Designa om UI med fokus på förbättrad användarupplevelse och visuell hierarki
-- [ ] 5. Deploy till Vercel med alla förbättringar
+- [x] 1. Flytta "Ett par" och "Två par" till övre sektionen (från nedre)
+- [x] 2. Byt plats mellan "Chans" och "Yatzy" på spelplanen
+- [x] 3. Implementera val mellan internationell yatzy-variant (50 + tärningarnas summa) och standard yatzy
+- [x] 4. Designa om UI med fokus på förbättrad användarupplevelse och visuell hierarki
+- [x] 5. Uppdatera beräkningslogik för ny sektionsindelning
+- [x] 6. Deploy till Vercel med alla förbättringar
 
 ---
 
