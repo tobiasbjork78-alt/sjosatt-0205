@@ -79,6 +79,11 @@
 
 ## 📜 Tidigare Tasks
 
+### ✅ 2026-02-04 02:57 - Bygg en digital Yatsy-protokoll app som ersätter p
+Commit: db2145b
+
+- [x] Bygg en digital Yatsy-protokoll app som ersätter p
+
 ### ✅ 2026-02-04 02:56 - Bygg en digital Yatsy-protokoll app som ersätter p
 
 - [x] Bygg en digital Yatsy-protokoll app som ersätter p
