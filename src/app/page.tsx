@@ -51,9 +51,16 @@ export default function Home() {
 
     const gameFinished = isGameFinished(updatedScores);
 
+    // Advance to next player's turn (only if game is not finished)
+    let nextPlayerIndex = currentGame.currentPlayerIndex;
+    if (!gameFinished) {
+      nextPlayerIndex = (currentGame.currentPlayerIndex + 1) % currentGame.players.length;
+    }
+
     const updatedGame: GameState = {
       ...currentGame,
       scores: updatedScores,
+      currentPlayerIndex: nextPlayerIndex,
       gameFinished,
       finishedAt: gameFinished ? new Date() : currentGame.finishedAt
     };
@@ -203,6 +210,7 @@ export default function Home() {
                 onScoreUpdate={updateScore}
                 gameFinished={currentGame.gameFinished}
                 isInternationalYatsy={currentGame.isInternationalYatsy}
+                currentPlayerIndex={currentGame.currentPlayerIndex}
               />
             )}
           </div>

@@ -11,6 +11,7 @@ interface ScoreTableProps {
   onScoreUpdate: (playerId: string, category: ScoreCategory, score: number) => void;
   gameFinished: boolean;
   isInternationalYatsy?: boolean;
+  currentPlayerIndex?: number;
 }
 
 
@@ -19,7 +20,8 @@ export default function ScoreTable({
   playerScores,
   onScoreUpdate,
   gameFinished,
-  isInternationalYatsy = false
+  isInternationalYatsy = false,
+  currentPlayerIndex = 0
 }: ScoreTableProps) {
   const [modalState, setModalState] = useState<{
     isOpen: boolean;
@@ -77,8 +79,30 @@ export default function ScoreTable({
     'smallStraight', 'largeStraight', 'yatsy', 'chance'
   ];
 
+  const currentPlayer = players[currentPlayerIndex];
+  const nextPlayerIndex = (currentPlayerIndex + 1) % players.length;
+  const nextPlayer = players[nextPlayerIndex];
+
   return (
     <>
+      {/* Current turn indicator */}
+      {!gameFinished && (
+        <div className="yatsy-card mb-4">
+          <div className="text-center p-4">
+            <div className="flex items-center justify-center gap-3 mb-2">
+              <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
+              <h3 className="text-lg font-bold text-gray-800">
+                Nu är det {currentPlayer?.name}s tur!
+              </h3>
+              <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
+            </div>
+            <p className="text-sm text-gray-600">
+              Nästa spelare: {nextPlayer?.name}
+            </p>
+          </div>
+        </div>
+      )}
+
       <div className="yatsy-card overflow-x-auto">
         <h3 className="text-xl font-bold text-gray-800 mb-2 text-center">
           Poängtabell
@@ -94,12 +118,30 @@ export default function ScoreTable({
                 <th className="text-left p-4 border-b-2 border-gray-600 font-bold text-lg">
                   📋 Kategori
                 </th>
-                {players.map((player, index) => (
-                  <th key={player.id} className="text-center p-4 border-b-2 border-gray-600 font-bold text-lg min-w-24">
-                    <span className="block text-xs text-gray-300 mb-1">Spelare {index + 1}</span>
-                    {player.name}
-                  </th>
-                ))}
+                {players.map((player, index) => {
+                  const isCurrentPlayer = index === currentPlayerIndex && !gameFinished;
+                  return (
+                    <th key={player.id} className={`text-center p-4 border-b-2 font-bold text-lg min-w-24 relative ${
+                      isCurrentPlayer
+                        ? 'bg-gradient-to-b from-green-600 to-green-700 border-green-400'
+                        : 'border-gray-600'
+                    }`}>
+                      {isCurrentPlayer && (
+                        <div className="absolute -top-2 left-1/2 transform -translate-x-1/2">
+                          <div className="w-0 h-0 border-l-4 border-r-4 border-b-4 border-transparent border-b-green-400"></div>
+                        </div>
+                      )}
+                      <span className={`block text-xs mb-1 ${isCurrentPlayer ? 'text-green-200' : 'text-gray-300'}`}>
+                        {isCurrentPlayer ? '👈 AKTIV' : `Spelare ${index + 1}`}
+                      </span>
+                      <div className="flex items-center justify-center gap-1">
+                        {isCurrentPlayer && <span className="text-yellow-300">🎯</span>}
+                        <span>{player.name}</span>
+                        {isCurrentPlayer && <span className="text-yellow-300">🎯</span>}
+                      </div>
+                    </th>
+                  );
+                })}
               </tr>
             </thead>
 
@@ -116,17 +158,22 @@ export default function ScoreTable({
                   <td className="p-3 border-b border-blue-100 font-medium text-gray-800">
                     {SCORE_CATEGORIES[category]}
                   </td>
-                  {players.map(player => {
+                  {players.map((player, playerIndex) => {
                     const playerScore = getPlayerScore(player.id);
                     const score = playerScore?.[category];
                     const isFilled = score !== null;
+                    const isCurrentPlayer = playerIndex === currentPlayerIndex && !gameFinished;
 
                     return (
-                      <td key={player.id} className="p-2 border-b border-blue-100">
+                      <td key={player.id} className={`p-2 border-b border-blue-100 ${
+                        isCurrentPlayer ? 'bg-green-50' : ''
+                      }`}>
                         <button
                           onClick={() => openModal(player.id, player.name, category)}
                           disabled={gameFinished}
-                          className={`score-cell ${isFilled ? 'filled' : ''} ${gameFinished ? 'cursor-not-allowed opacity-75' : ''}`}
+                          className={`score-cell ${isFilled ? 'filled' : ''} ${gameFinished ? 'cursor-not-allowed opacity-75' : ''} ${
+                            isCurrentPlayer && !isFilled ? 'ring-2 ring-green-400 ring-opacity-70 shadow-lg' : ''
+                          }`}
                         >
                           {score ?? ''}
                         </button>
@@ -141,10 +188,13 @@ export default function ScoreTable({
                 <td className="p-3 border-b border-gray-300 font-bold text-gray-700">
                   📊 Summa Övre
                 </td>
-                {players.map(player => {
+                {players.map((player, playerIndex) => {
                   const playerScore = getPlayerScore(player.id);
+                  const isCurrentPlayer = playerIndex === currentPlayerIndex && !gameFinished;
                   return (
-                    <td key={player.id} className="p-3 border-b border-gray-300 text-center font-bold text-lg text-blue-700">
+                    <td key={player.id} className={`p-3 border-b border-gray-300 text-center font-bold text-lg text-blue-700 ${
+                      isCurrentPlayer ? 'bg-green-50 ring-2 ring-green-300 ring-inset' : ''
+                    }`}>
                       {playerScore?.upperSum || 0}
                     </td>
                   );
@@ -155,11 +205,14 @@ export default function ScoreTable({
                 <td className="p-3 border-b-2 border-yellow-200 font-bold text-gray-700">
                   🏆 Bonus (63+ = 50p)
                 </td>
-                {players.map(player => {
+                {players.map((player, playerIndex) => {
                   const playerScore = getPlayerScore(player.id);
                   const hasBonus = (playerScore?.upperBonus || 0) > 0;
+                  const isCurrentPlayer = playerIndex === currentPlayerIndex && !gameFinished;
                   return (
-                    <td key={player.id} className={`p-3 border-b-2 border-yellow-200 text-center font-bold text-lg ${hasBonus ? 'text-yellow-600' : 'text-gray-400'}`}>
+                    <td key={player.id} className={`p-3 border-b-2 border-yellow-200 text-center font-bold text-lg ${hasBonus ? 'text-yellow-600' : 'text-gray-400'} ${
+                      isCurrentPlayer ? 'bg-green-50 ring-2 ring-green-300 ring-inset' : ''
+                    }`}>
                       {playerScore?.upperBonus || 0}
                       {hasBonus && ' 🎉'}
                     </td>
@@ -179,17 +232,22 @@ export default function ScoreTable({
                   <td className="p-3 border-b border-green-100 font-medium text-gray-800">
                     {SCORE_CATEGORIES[category]}
                   </td>
-                  {players.map(player => {
+                  {players.map((player, playerIndex) => {
                     const playerScore = getPlayerScore(player.id);
                     const score = playerScore?.[category];
                     const isFilled = score !== null;
+                    const isCurrentPlayer = playerIndex === currentPlayerIndex && !gameFinished;
 
                     return (
-                      <td key={player.id} className="p-2 border-b border-green-100">
+                      <td key={player.id} className={`p-2 border-b border-green-100 ${
+                        isCurrentPlayer ? 'bg-green-50' : ''
+                      }`}>
                         <button
                           onClick={() => openModal(player.id, player.name, category)}
                           disabled={gameFinished}
-                          className={`score-cell ${isFilled ? 'filled' : ''} ${gameFinished ? 'cursor-not-allowed opacity-75' : ''}`}
+                          className={`score-cell ${isFilled ? 'filled' : ''} ${gameFinished ? 'cursor-not-allowed opacity-75' : ''} ${
+                            isCurrentPlayer && !isFilled ? 'ring-2 ring-green-400 ring-opacity-70 shadow-lg' : ''
+                          }`}
                         >
                           {score ?? ''}
                         </button>
@@ -204,16 +262,19 @@ export default function ScoreTable({
                 <td className="p-4 font-bold text-xl tracking-wide">
                   🎯 TOTALT
                 </td>
-                {players.map((player, index) => {
+                {players.map((player, playerIndex) => {
                   const playerScore = getPlayerScore(player.id);
                   const totalScore = playerScore?.totalScore || 0;
                   // Check if this player is in the lead
                   const allScores = players.map(p => getPlayerScore(p.id)?.totalScore || 0);
                   const maxScore = Math.max(...allScores);
                   const isLeading = totalScore === maxScore && totalScore > 0;
+                  const isCurrentPlayer = playerIndex === currentPlayerIndex && !gameFinished;
 
                   return (
-                    <td key={player.id} className="p-4 text-center font-bold text-xl">
+                    <td key={player.id} className={`p-4 text-center font-bold text-xl ${
+                      isCurrentPlayer ? 'bg-green-100 ring-2 ring-green-400 ring-inset' : ''
+                    }`}>
                       {totalScore}
                       {isLeading && gameFinished && ' 👑'}
                       {isLeading && !gameFinished && totalScore > 0 && ' 🔥'}
